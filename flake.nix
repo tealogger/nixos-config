@@ -1,5 +1,5 @@
 {
-  description = "A SecureBoot-enabled NixOS configurations";
+  description = "System Flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -8,7 +8,6 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
 
   };
 

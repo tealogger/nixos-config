@@ -111,7 +111,7 @@
     description = "x";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      sbctl niv
+      sbctl
       kdePackages.kate
       brave
       neovim
@@ -129,6 +129,7 @@
       prismlauncher
       krita
       cava
+      peaclock
     ];
   };
 
@@ -136,7 +137,7 @@
     enable = true;
 
     shellAliases = {
-      nixrebuild = "sudo nixos-rebuild switch";
+      nixrebuild = "sudo nixos-rebuild switch --flake .";
       nixupdate = "sudo nix flake update";
     };
   };
@@ -189,7 +190,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.05"; # Did you read the comment?
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
