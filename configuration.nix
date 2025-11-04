@@ -17,7 +17,7 @@
 
   boot.initrd.luks.devices."luks-a15d6f7d-872b-49fe-9d61-c1f902b16db3".device = "/dev/disk/by-uuid/a15d6f7d-872b-49fe-9d61-c1f902b16db3";
 
-  networking.hostName = "pc12"; # Define your hostname.
+  networking.hostName = "lenlap"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -106,7 +106,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.x = {
-    shell = pkgs.fish; 
+    shell = pkgs.fish;
     isNormalUser = true;
     description = "x";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -114,7 +114,6 @@
       sbctl
       kdePackages.kate
       brave
-      neovim
       alacritty
       vesktop
       telegram-desktop
@@ -129,9 +128,10 @@
       prismlauncher
       krita
       cava
-      peaclock
     ];
   };
+
+  nix.settings.allowed-users = ["*"];
 
   programs.fish = {
     enable = true;
