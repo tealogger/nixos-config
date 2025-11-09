@@ -1,10 +1,18 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+
+  imports = [
+    inputs.niri.homeModules.niri
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+    ./niri.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "x";
   home.homeDirectory = "/home/x";
+
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -15,14 +23,35 @@
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
+  nixpkgs.config.allowUnfree = true;
+
+  programs.git.enable = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs;[
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
     peaclock
-    zed-editor
-    wofi
+    cava
+    neovim
+    swaybg
+    nwg-look
+    sbctl
+    kdePackages.kate
+    brave
+    alacritty
+    vesktop
+    telegram-desktop
+    fastfetch
+    protonvpn-gui
+    obsidian
+    vscode
+    libreoffice-fresh
+    kdePackages.kolourpaint
+    cmatrix
+    mangohud
+    prismlauncher
+    krita
+    cava
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -73,6 +102,15 @@
     # EDITOR = "emacs";
   };
 
+  #home.file.".config/niri/config.kdl".source = /home/x/Documents/configs/niri/config.kdl;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.dankMaterialShell = {
+    enable = true;
+    niri = {
+      enableKeybinds = true;  # Automatic keybinding configuration
+      enableSpawn = true;      # Auto-start DMS with niri
+    };
+  };
 }
