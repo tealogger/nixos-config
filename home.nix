@@ -3,9 +3,6 @@
 {
 
   imports = [
-    inputs.niri.homeModules.niri
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
     ./niri.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -26,6 +23,9 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.git.enable = true;
+
+  services.gnome-keyring.enable = true;
+
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -50,14 +50,20 @@
     cmatrix
     mangohud
     prismlauncher
-    krita
     cava
+    xwayland-satellite
+    nautilus
+    mint-y-icons
+    obs-studio
+    kdePackages.breeze
+    kdePackages.powerdevil
+    adw-gtk3
+    letterpress
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -66,7 +72,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -102,15 +107,7 @@
     # EDITOR = "emacs";
   };
 
-  #home.file.".config/niri/config.kdl".source = /home/x/Documents/configs/niri/config.kdl;
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  programs.dankMaterialShell = {
-    enable = true;
-    niri = {
-      enableKeybinds = true;  # Automatic keybinding configuration
-      enableSpawn = true;      # Auto-start DMS with niri
-    };
-  };
+
 }

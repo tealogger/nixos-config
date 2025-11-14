@@ -23,6 +23,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  services.tuned.enable = true;
+  services.upower.enable = true;
+  powerManagement.enable = true;
+
   # Set your time zone.
   time.timeZone = "Asia/Kuala_Lumpur";
 
@@ -64,8 +68,7 @@
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.ly.enable = true;
 
   programs.niri.enable = true;
 
@@ -73,7 +76,7 @@
   services.xserver.xkb = {
     layout = "us, ru";
     variant = "";
-    options = "grp:win_space_toggle";
+    options = "grp:alt_space_toggle";
   };
 
   # Enable CUPS to print documents.
