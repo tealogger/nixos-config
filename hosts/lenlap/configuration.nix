@@ -6,13 +6,14 @@
       ./hardware-configuration.nix
       ../../modules/nixos/nvidia.nix
       ../../modules/nixos/kde.nix
+      ../../modules/nixos/steam.nix
+      ../../modules/nixos/ly.nix
     ];
 
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-a15d6f7d-872b-49fe-9d61-c1f902b16db3".device = "/dev/disk/by-uuid/a15d6f7d-872b-49fe-9d61-c1f902b16db3";
+  boot.initrd.luks.devices."luks-e36467ed-2cdb-4c5c-bd37-39fb1f2ffc1b".device = "/dev/disk/by-uuid/e36467ed-2cdb-4c5c-bd37-39fb1f2ffc1b";
 
   networking.hostName = "lenlap"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -29,7 +30,8 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
+  i18n.extraLocaleSettings =
+  {
     LC_ADDRESS = "en_GB.UTF-8";
     LC_IDENTIFICATION = "en_GB.UTF-8";
     LC_MEASUREMENT = "en_GB.UTF-8";
@@ -41,74 +43,41 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Enable CUPS to print documents.
   services.printing.enable = true;
   hardware.bluetooth.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
+  services.pipewire =
+  {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
   };
 
-  users.users.x = {
+  users.users.x =
+  {
     shell = pkgs.fish;
     isNormalUser = true;
     description = "x";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  programs.fish = {
-    enable = true;
+  nix.settings.trusted-users = [ "root" "x" ];
 
-    shellAliases = {
-      flup = "nix flake update";
-      nxrb = "sudo nixos-rebuild switch --flake .";
-      hmrb = "home-manager switch --flake .";
-    };
-  };
+  programs.fish.enable = true;
 
-  nix.settings.allowed-users = ["*"];
-
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+  environment.systemPackages = with pkgs;
+  [
+
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

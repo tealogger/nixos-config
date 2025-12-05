@@ -1,11 +1,11 @@
 { config, pkgs, inputs, ... }:
 
 {
-
   imports = [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/fonts.nix
     ../../modules/home-manager/programs.nix
+    ../../modules/home-manager/fish.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -21,8 +21,6 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
-
-  nixpkgs.config.allowUnfree = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.

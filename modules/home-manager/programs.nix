@@ -1,16 +1,6 @@
 { config, pkgs,... }:
 
 {
-#   programs.steam = {
-#     enable = true;
-#
-#     extraPackages = with pkgs;
-#       [kdePackages.breeze];
-#
-#     gamescopeSession.enable = true;
-#   };
-#   programs.gamemode.enable = true;
-
   home.packages = with pkgs;[
     sbctl
     brave
@@ -18,7 +8,7 @@
     vesktop
     telegram-desktop
     fastfetch
-    #obsidian
+    obsidian
     vscode
     cmatrix
     mangohud
@@ -30,5 +20,9 @@
     protonvpn-gui
     onlyoffice-desktopeditors
     peaclock
+    btop
+    kdePackages.isoimagewriter
+    devenv
+    kdePackages.kolourpaint
   ];
 }
