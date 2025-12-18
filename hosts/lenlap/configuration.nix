@@ -8,6 +8,8 @@
       ../../modules/nixos/kde.nix
       ../../modules/nixos/steam.nix
       ../../modules/nixos/ly.nix
+      #../../modules/nixos/flatpak.nix
+      ../../modules/nixos/virtual-machines.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -62,7 +64,7 @@
     shell = pkgs.fish;
     isNormalUser = true;
     description = "x";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
   };
 
   nix.settings.trusted-users = [ "root" "x" ];

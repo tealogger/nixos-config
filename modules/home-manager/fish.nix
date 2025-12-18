@@ -19,7 +19,7 @@
             Default_Path = "~/Nixos";
         in
         {
-            flup = "nix flake update ${Default_Path}";
+            flup = "nix flake update --flake ${Default_Path}";
             nxrb = "sudo nixos-rebuild switch --flake ${Default_Path}";
         };
     };

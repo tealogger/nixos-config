@@ -5,8 +5,10 @@
   services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
   hardware.nvidia.open = true;
 
-  hardware.nvidia.prime = {
-    offload = {
+  hardware.nvidia.prime =
+  {
+    offload =
+    {
       enable = true;
       enableOffloadCmd = true;
     };

@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs;[
     sbctl
+    flatpak
     brave
     alacritty
     vesktop
@@ -22,7 +23,18 @@
     peaclock
     btop
     kdePackages.isoimagewriter
-    devenv
+    kdePackages.kcalc
+    kdePackages.kcharselect
+    kdePackages.kclock
+    kdePackages.kcolorchooser
     kdePackages.kolourpaint
+    kdePackages.partitionmanager
+    kdePackages.kdenlive
+    devenv
+    blender
+    godot
+    dnsmasq
+    haruna
+    video-trimmer
   ];
 }
