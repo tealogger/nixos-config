@@ -10,16 +10,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    lanzaboote =
-    {
-      url = "github:nix-community/lanzaboote/v0.4.3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, ...}:
+  outputs = { self, nixpkgs, home-manager, ...}:
     let
         system = "x86_64-linux";
     in
@@ -39,24 +32,6 @@
               home-manager.useUserPackages = true;
               home-manager.users.x = ./hosts/lenlap/home.nix;
             }
-
-            lanzaboote.nixosModules.lanzaboote
-            ({ pkgs, lib, ... }:
-            {
-
-              environment.systemPackages =
-              [
-                pkgs.sbctl
-              ];
-
-              boot.loader.systemd-boot.enable = lib.mkForce false;
-
-              boot.lanzaboote =
-              {
-                enable = true;
-                pkiBundle = "/var/lib/sbctl";
-              };
-            })
           ];
 
         };

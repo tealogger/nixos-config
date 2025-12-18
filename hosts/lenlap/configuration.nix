@@ -12,7 +12,12 @@
       ../../modules/nixos/virtual-machines.nix
     ];
 
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.limine =
+  {
+    enable = true;
+    secureBoot.enable = true;
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-e36467ed-2cdb-4c5c-bd37-39fb1f2ffc1b".device = "/dev/disk/by-uuid/e36467ed-2cdb-4c5c-bd37-39fb1f2ffc1b";
@@ -77,7 +82,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs;
   [
-
+    sbctl
   ];
 
   system.stateVersion = "25.05";
