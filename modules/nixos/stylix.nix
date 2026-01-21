@@ -1,10 +1,12 @@
 { config, pkgs,... }:
 
 {
-    stylix = {
+    stylix =
+    {
         enable = true;
 
-        base16Scheme = {
+        base16Scheme =
+        {
             base00 = "#000000";
             base01 = "#121212";
             base02 = "#222222";

@@ -1,23 +1,23 @@
 { config, pkgs,... }:
 
 {
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
-  hardware.nvidia.open = true;
+    hardware.graphics.enable = true;
+    services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+    hardware.nvidia.open = true;
 
-  hardware.nvidia.prime =
-  {
-    offload =
+    hardware.nvidia.prime =
     {
-      enable = true;
-      enableOffloadCmd = true;
+        offload =
+        {
+            enable = true;
+            enableOffloadCmd = true;
+        };
+
+        # integrated
+        # intelBusId = "PCI:0:0:0";
+        amdgpuBusId = "PCI:5:0:0";
+
+        # dedicated
+        nvidiaBusId = "PCI:1:0:0";
     };
-
-    # integrated
-    # intelBusId = "PCI:0:0:0";
-    amdgpuBusId = "PCI:5:0:0";
-
-    # dedicated
-    nvidiaBusId = "PCI:1:0:0";
-  };
 }
